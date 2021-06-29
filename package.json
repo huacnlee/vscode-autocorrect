@@ -33,7 +33,7 @@
 				},
 				"auto-correct.formatOnSave": {
 					"type": "boolean",
-					"default": false,
+					"default": true,
 					"description": "Turn on/off autoformatting file on save"
 				}
 			}
