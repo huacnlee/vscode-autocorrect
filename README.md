@@ -3,6 +3,10 @@
 VS Code extentsion for automatically format your source code for add whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).
 
 Base on: https://github.com/huacnlee/auto-correct.rs
+
+## Installation
+
+https://marketplace.visualstudio.com/items?itemName=huacnlee.auto-correct
 ## Requirements
 
 You must install `autocorrect` command first.
