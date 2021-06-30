@@ -1,12 +1,10 @@
-# auto-correct for VS Code
+# AutoCorrect for VS Code
 
 VS Code extentsion for automatically format your source code for add whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).
 
-Base on: https://github.com/huacnlee/auto-correct.rs
-
 ## Show case
 
-![auto-correct](https://user-images.githubusercontent.com/5518/123918476-7ed38a00-d9b6-11eb-91f7-6af7a9c49a3e.gif)
+![autocorrect](https://user-images.githubusercontent.com/5518/123918476-7ed38a00-d9b6-11eb-91f7-6af7a9c49a3e.gif)
 
 ## Installation
 
@@ -14,9 +12,15 @@ https://marketplace.visualstudio.com/items?itemName=huacnlee.auto-correct
 
 ## Configuration
 
+Open VS Code `settings.json`:
+
 ```json
-// enable formatOnSave
-"auto-correct.formatOnSave": true
+{
+  // enable formatOnSave, default: true
+  "autocorrect.formatOnSave": true,
+  // change the autocorrect bin path, default: autocorrect
+  "autocorrect.path": "autocorrect"
+}
 ```
 
 ## Disable AutoCorrect
@@ -32,8 +36,10 @@ puts "This file will ignore."
 
 You must install `autocorrect` command first.
 
+https://github.com/huacnlee/autocorrect
+
 ```bash
-$ curl -sSL https://git.io/JckA6 | bash
+$ curl -sSL https://git.io/JcGER | bash
 $ autocorrect -V
-0.5.2
+0.5.3
 ```

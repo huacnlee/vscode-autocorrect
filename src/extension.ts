@@ -3,9 +3,10 @@
 import * as vscode from "vscode";
 
 function formatDocument(document: vscode.TextDocument) {
-  const config = vscode.workspace.getConfiguration("auto-correct");
+  const config = vscode.workspace.getConfiguration("autocorrect");
 
   const cmdPath = config["path"] || "autocorrect";
+
   const exec = require("child_process").exec;
   exec(cmdPath + " --fix " + document.fileName, (err: Error) => {
     if (err) {
@@ -18,7 +19,7 @@ function formatDocument(document: vscode.TextDocument) {
 // your extension is activated the very first time the command is executed
 export function activate(ctx: vscode.ExtensionContext) {
   ctx.subscriptions.push(
-    vscode.commands.registerCommand("auto-correct.format", () => {
+    vscode.commands.registerCommand("autocorrect.format", () => {
       const document = vscode.window.activeTextEditor?.document;
       if (document) {
         formatDocument(document);
@@ -28,7 +29,7 @@ export function activate(ctx: vscode.ExtensionContext) {
 
   ctx.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument((document) => {
-      const config = vscode.workspace.getConfiguration("auto-correct");
+      const config = vscode.workspace.getConfiguration("autocorrect");
       if (config["formatOnSave"]) {
         formatDocument(document);
       }
