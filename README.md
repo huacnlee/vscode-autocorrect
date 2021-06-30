@@ -11,6 +11,23 @@ Base on: https://github.com/huacnlee/auto-correct.rs
 ## Installation
 
 https://marketplace.visualstudio.com/items?itemName=huacnlee.auto-correct
+
+## Configuration
+
+```json
+// enable formatOnSave
+"auto-correct.formatOnSave": true
+```
+
+## Disable AutoCorrect
+
+If you want disable `formatOnSave` for a file, put `autocorrect: false` as comment it a file.
+
+```rb
+# autocorrect: false
+puts "This file will ignore."
+```
+
 ## Requirements
 
 You must install `autocorrect` command first.
