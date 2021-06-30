@@ -41,5 +41,5 @@ https://github.com/huacnlee/autocorrect
 ```bash
 $ curl -sSL https://git.io/JcGER | bash
 $ autocorrect -V
-0.5.3
+0.6.0
 ```
