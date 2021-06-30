@@ -4,6 +4,10 @@ VS Code extentsion for automatically format your source code for add whitespace 
 
 Base on: https://github.com/huacnlee/auto-correct.rs
 
+## Show case
+
+![auto-correct](https://user-images.githubusercontent.com/5518/123918476-7ed38a00-d9b6-11eb-91f7-6af7a9c49a3e.gif)
+
 ## Installation
 
 https://marketplace.visualstudio.com/items?itemName=huacnlee.auto-correct
