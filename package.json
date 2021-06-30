@@ -39,14 +39,11 @@
       }
     ],
     "configuration": {
-      "title": "AutoCorrect configuration",
+      "title": "AutoCorrect",
       "type": "object",
       "properties": {
         "autocorrect.path": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
           "default": "autocorrect",
           "description": "Specifies path to autocorrect binary if it's not in PATH"
         },
