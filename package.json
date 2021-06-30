@@ -17,7 +17,8 @@
     "onLanguage:yaml",
     "onLanguage:javascript",
     "onLanguage:ruby",
-    "onLanguage:html"
+    "onLanguage:html",
+    "onLanguage:sql"
   ],
   "main": "./dist/extension.js",
   "contributes": {
