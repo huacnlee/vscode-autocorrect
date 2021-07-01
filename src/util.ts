@@ -8,6 +8,9 @@ const checkUpdateURL =
 
 export const outputChannel = vscode.window.createOutputChannel("AutoCorrect");
 
+export const lintDiagnosticCollection =
+  vscode.languages.createDiagnosticCollection("AutoCorrect");
+
 export function getBinPath(): string {
   const config = vscode.workspace.getConfiguration("autocorrect");
   return config["path"];
