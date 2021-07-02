@@ -45,6 +45,10 @@ export function activate(ctx: vscode.ExtensionContext) {
     vscode.workspace.onDidSaveTextDocument((document) => {
       const config = vscode.workspace.getConfiguration("autocorrect");
 
+      if (!config["enable"]) {
+        return;
+      }
+
       lintDocument(document);
 
       if (config["formatOnSave"]) {

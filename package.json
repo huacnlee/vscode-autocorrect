@@ -43,7 +43,13 @@
       "title": "AutoCorrect",
       "type": "object",
       "properties": {
+        "autocorrect.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Turn on/off enable AutoCorrect"
+        },
         "autocorrect.path": {
+          "title": "AutoCorrect bin path",
           "type": "string",
           "default": "autocorrect",
           "description": "Specifies path to autocorrect binary if it's not in PATH"
