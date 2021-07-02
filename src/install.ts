@@ -24,31 +24,43 @@ export async function checkUpdates(): Promise<void> {
   }
 
   if (!currentVersion) {
-    outputChannel.appendLine(
-      `AutoCorrect not installed, can not found ${getBinPath()}.`
-    );
-    showInstallMessage();
+    const msg =
+      `Failed to find the "autocorrect" binary in either (${getBinPath()}).\n` +
+      "Check PATH, or Install AutoCorrect and reload the window. ";
+    await showInstallMessage(msg, "Install");
     return;
   }
 
   if (currentVersion !== lastVersion) {
-    outputChannel.appendLine(
-      `Current: ${currentVersion}, Latest: ${lastVersion}`
-    );
-    showInstallMessage();
+    const msg = `AutoCorrect has new version ${lastVersion}.`;
+
+    await showInstallMessage(msg, "Update");
   }
 }
 
-export function showInstallMessage() {
+async function showInstallMessage(msg: string, btnText: string) {
   if (hasShowedInstallMessage) {
     return;
   }
 
   hasShowedInstallMessage = true;
 
-  outputChannel.appendLine("");
-  outputChannel.appendLine(`You can run this script to install or upgrade:`);
-  outputChannel.appendLine(`curl -sSL https://git.io/JcGER | bash`);
-  outputChannel.appendLine("");
-  outputChannel.show();
+  const choice = await vscode.window.showInformationMessage(msg, btnText);
+  if (choice === btnText) {
+    await installOrUpdate();
+  }
+}
+
+async function installOrUpdate() {
+  const sh = new vscode.ShellExecution("curl -sSL https://git.io/JcGER | bash");
+  const task = new vscode.Task(
+    { type: "install-autocorrect" },
+    vscode.TaskScope.Workspace,
+    "Install",
+    "AutoCorrect",
+    sh,
+    []
+  );
+
+  await vscode.tasks.executeTask(task);
 }
