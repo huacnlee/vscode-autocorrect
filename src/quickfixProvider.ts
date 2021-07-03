@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import {
   CodeActionProvider,
   TextDocument,
@@ -7,8 +6,6 @@ import {
   CancellationToken,
   CodeAction,
   CodeActionKind,
-  DiagnosticSeverity,
-  Diagnostic,
 } from "vscode";
 
 export default class QuickFixProvider implements CodeActionProvider {

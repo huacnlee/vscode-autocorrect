@@ -41,10 +41,13 @@ function diagnosticResults(
   const diagnostics: Array<vscode.Diagnostic> = [];
 
   results.forEach((result) => {
+    // count lines for mult-lines
+    const additionLines = result.old.split("\n").length - 1;
+
     const range = new vscode.Range(
       result.l - 1,
       result.c - 1,
-      result.l - 1,
+      result.l + additionLines - 1,
       result.c + result.old.length - 1
     );
 
