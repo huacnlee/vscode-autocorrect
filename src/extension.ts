@@ -10,21 +10,12 @@ import QuickFixProvider from "./quickfixProvider";
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(ctx: vscode.ExtensionContext) {
+  const config = vscode.workspace.getConfiguration("autocorrect");
+
   checkUpdates();
 
+  // QuickFix command
   vscode.languages.registerCodeActionsProvider("*", new QuickFixProvider());
-
-  ctx.subscriptions.push(lintDiagnosticCollection);
-
-  ctx.subscriptions.push(
-    vscode.commands.registerCommand("autocorrect.format", () => {
-      const document = vscode.window.activeTextEditor?.document;
-      if (document) {
-        formatDocument(document);
-      }
-    })
-  );
-
   ctx.subscriptions.push(
     vscode.commands.registerCommand(
       "autocorrect.diagnostic-quickfix",
@@ -41,8 +32,8 @@ export function activate(ctx: vscode.ExtensionContext) {
     )
   );
 
-  const config = vscode.workspace.getConfiguration("autocorrect");
-
+  // OpenTextDocument to lint
+  ctx.subscriptions.push(lintDiagnosticCollection);
   ctx.subscriptions.push(
     vscode.workspace.onDidOpenTextDocument((document) => {
       if (!config["enable"]) {
@@ -53,6 +44,17 @@ export function activate(ctx: vscode.ExtensionContext) {
     })
   );
 
+  // Format command
+  ctx.subscriptions.push(
+    vscode.commands.registerCommand("autocorrect.format", () => {
+      const document = vscode.window.activeTextEditor?.document;
+      if (document) {
+        formatDocument(document);
+      }
+    })
+  );
+
+  // Format on Save
   ctx.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument((document) => {
       if (!config["enable"]) {
