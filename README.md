@@ -4,6 +4,12 @@ VS Code extentsion for automatically format your source code for add whitespace 
 
 ## Show case
 
+### Lint
+
+![](https://user-images.githubusercontent.com/5518/124361642-9df64400-dc62-11eb-8ee2-79cd88666bfa.png)
+
+### Use FormatOnSave
+
 ![autocorrect](https://user-images.githubusercontent.com/5518/123918476-7ed38a00-d9b6-11eb-91f7-6af7a9c49a3e.gif)
 
 ## Installation
@@ -16,9 +22,11 @@ Open VS Code `settings.json`:
 
 ```json
 {
-  // enable formatOnSave, default: true
+  // Turn on/off enable AutoCorrect
+  "autocorrect.enable": true,
+  // Turn on/off formatOnSave, default: true
   "autocorrect.formatOnSave": true,
-  // change the autocorrect bin path, default: autocorrect
+  // Change the autocorrect bin path, default: autocorrect
   "autocorrect.path": "autocorrect"
 }
 ```
