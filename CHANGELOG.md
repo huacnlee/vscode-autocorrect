@@ -1,3 +1,8 @@
+## 0.3.2
+
+- Fix lint display and quickfix for multi-line.
+- Fix "autocorrect.format" command for remove lint warning on complete.
+
 ## 0.3.1
 
 - Lint check on document open.
