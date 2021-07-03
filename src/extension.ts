@@ -46,17 +46,18 @@ export function activate(ctx: vscode.ExtensionContext) {
 
   // Format command
   ctx.subscriptions.push(
-    vscode.commands.registerCommand("autocorrect.format", () => {
+    vscode.commands.registerCommand("autocorrect.format", async () => {
       const document = vscode.window.activeTextEditor?.document;
       if (document) {
-        formatDocument(document);
+        await formatDocument(document);
+        // await document.save();
       }
     })
   );
 
   // Format on Save
   ctx.subscriptions.push(
-    vscode.workspace.onDidSaveTextDocument((document) => {
+    vscode.workspace.onDidSaveTextDocument(async (document) => {
       if (!config["enable"]) {
         return;
       }
@@ -64,7 +65,7 @@ export function activate(ctx: vscode.ExtensionContext) {
       lintDocument(document);
 
       if (config["formatOnSave"]) {
-        formatDocument(document);
+        await formatDocument(document);
       }
     })
   );

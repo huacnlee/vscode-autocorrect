@@ -36,7 +36,7 @@
     "commands": [
       {
         "command": "autocorrect.format",
-        "title": "AutoCorrect: format current document"
+        "title": "AutoCorrect: Format document"
       }
     ],
     "configuration": {

@@ -27,7 +27,7 @@ export default class QuickFixProvider implements CodeActionProvider {
         fixAction.isPreferred = true;
         fixAction.diagnostics = [diagnostic];
         fixAction.command = {
-          title: "Correct",
+          title: "AutoCorrect",
           command: "autocorrect.diagnostic-quickfix",
           arguments: [document, diagnostic, fixAction],
         };
