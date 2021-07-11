@@ -4,7 +4,7 @@
   "publisher": "huacnlee",
   "homepage": "https://github.com/huacnlee/vscode-auto-correct",
   "description": "Automatically format your source code for add whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "license": "MIT",
   "engines": {
     "vscode": "^1.57.0"
@@ -28,7 +28,15 @@
     "onLanguage:python",
     "onLanguage:rust",
     "onLanguage:crystal",
-    "onLanguage:sql"
+    "onLanguage:sql",
+    "onLanguage:php",
+    "onLanguage:csharp",
+    "onLanguage:dart",
+    "onLanguage:swift",
+    "onLanguage:objective-c",
+    "onLanguage:java",
+    "onLanguage:kotlin",
+    "onLanguage:markdown"
   ],
   "icon": "icon.png",
   "main": "./dist/extension.js",
