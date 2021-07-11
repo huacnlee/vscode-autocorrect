@@ -1,24 +1,22 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import * as vscode from "vscode";
-import { checkUpdates } from "./install";
-import { formatDocument } from "./formatting";
-import { lintDocument } from "./lint";
-import { lintDiagnosticCollection } from "./util";
-import QuickFixProvider from "./quickfixProvider";
+import * as vscode from 'vscode';
+import { checkUpdates } from './install';
+import { formatDocument } from './formatting';
+import { lintDocument } from './lint';
+import { lintDiagnosticCollection } from './util';
+import QuickFixProvider from './quickfixProvider';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(ctx: vscode.ExtensionContext) {
-  const config = vscode.workspace.getConfiguration("autocorrect");
-
   checkUpdates();
 
   // QuickFix command
-  vscode.languages.registerCodeActionsProvider("*", new QuickFixProvider());
+  vscode.languages.registerCodeActionsProvider('*', new QuickFixProvider());
   ctx.subscriptions.push(
     vscode.commands.registerCommand(
-      "autocorrect.diagnostic-quickfix",
+      'autocorrect.diagnostic-quickfix',
       async (
         document: vscode.TextDocument,
         diagnostic: vscode.Diagnostic,
@@ -36,7 +34,9 @@ export function activate(ctx: vscode.ExtensionContext) {
   ctx.subscriptions.push(lintDiagnosticCollection);
   ctx.subscriptions.push(
     vscode.workspace.onDidOpenTextDocument((document) => {
-      if (!config["enable"]) {
+      const config = vscode.workspace.getConfiguration('autocorrect');
+
+      if (!config['enable']) {
         return;
       }
 
@@ -46,7 +46,7 @@ export function activate(ctx: vscode.ExtensionContext) {
 
   // Format command
   ctx.subscriptions.push(
-    vscode.commands.registerCommand("autocorrect.format", async () => {
+    vscode.commands.registerCommand('autocorrect.format', async () => {
       const document = vscode.window.activeTextEditor?.document;
       if (document) {
         await formatDocument(document);
@@ -58,13 +58,15 @@ export function activate(ctx: vscode.ExtensionContext) {
   // Format on Save
   ctx.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument(async (document) => {
-      if (!config["enable"]) {
+      const config = vscode.workspace.getConfiguration('autocorrect');
+
+      if (!config['enable']) {
         return;
       }
 
       lintDocument(document);
 
-      if (config["formatOnSave"]) {
+      if (config['formatOnSave']) {
         await formatDocument(document);
       }
     })
