@@ -6,7 +6,7 @@ VS Code extentsion for automatically format your source code for add whitespace 
 
 ### Lint
 
-![](https://user-images.githubusercontent.com/5518/124361642-9df64400-dc62-11eb-8ee2-79cd88666bfa.png)
+<img width="901" alt="huacnlee.autocorrect" src="https://user-images.githubusercontent.com/5518/126027685-cee6f91d-1a10-4fcc-b5f4-1a99ac4cd5ae.png">
 
 ### Use FormatOnSave
 
