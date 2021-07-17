@@ -1,35 +1,50 @@
-import vscode = require("vscode");
-import cp = require("child_process");
-import util = require("util");
-import { getBinPath, lintDiagnosticCollection } from "./util";
+import vscode = require('vscode');
+import cp = require('child_process');
+import util = require('util');
+import { getBinPath, lintDiagnosticCollection } from './util';
 
 interface ICheckResult {
+  filename: string;
   l: number;
   c: number;
   old: string;
   new: string;
 }
 
+interface ILintResult {
+  filepath: number;
+  lines: [ICheckResult];
+}
+interface ILintRootResult {
+  count: number;
+  messages: [ILintResult];
+}
+
 export function lintDocument(document: vscode.TextDocument) {
   const binPath = getBinPath();
 
-  cp.exec(binPath + " --lint " + document.fileName, (err, stdout, stderr) => {
-    if (stderr) {
-      console.warn("AutoCorrect exec error:", stderr);
+  cp.exec(
+    binPath + ` --format json --lint \"${document.fileName}"`,
+    (err, stdout, stderr) => {
+      if (stderr) {
+        console.warn('AutoCorrect exec error:', stderr);
+      }
+
+      const ret: ICheckResult[] = [];
+      const rootResult: ILintRootResult = JSON.parse(stdout);
+      if (rootResult.count === 0) {
+        return;
+      }
+      const lines = rootResult.messages[0].lines;
+
+      lines.map((line) => {
+        line.filename = document.fileName;
+        ret.push(line);
+      });
+
+      diagnosticResults(document, ret);
     }
-
-    const ret: ICheckResult[] = [];
-    const rawItems = stdout.trim().split("\n");
-    rawItems.map((raw) => {
-      try {
-        const result = JSON.parse(raw);
-        result.filename = document.fileName;
-        ret.push(result);
-      } catch (e) {}
-    });
-
-    diagnosticResults(document, ret);
-  });
+  );
 }
 
 function diagnosticResults(
@@ -42,7 +57,7 @@ function diagnosticResults(
 
   results.forEach((result) => {
     // count lines for mult-lines
-    const additionLines = result.old.split("\n").length - 1;
+    const additionLines = result.old.split('\n').length - 1;
 
     const range = new vscode.Range(
       result.l - 1,
@@ -58,7 +73,7 @@ function diagnosticResults(
       msg,
       vscode.DiagnosticSeverity.Warning
     );
-    diagnostic.source = "autocorrect";
+    diagnostic.source = 'autocorrect';
 
     diagnostics.push(diagnostic);
   });

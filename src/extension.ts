@@ -32,6 +32,7 @@ export function activate(ctx: vscode.ExtensionContext) {
 
   // OpenTextDocument to lint
   ctx.subscriptions.push(lintDiagnosticCollection);
+
   ctx.subscriptions.push(
     vscode.workspace.onDidOpenTextDocument((document) => {
       const config = vscode.workspace.getConfiguration('autocorrect');
