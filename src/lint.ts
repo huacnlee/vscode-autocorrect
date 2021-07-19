@@ -1,7 +1,7 @@
 import vscode = require('vscode');
 import cp = require('child_process');
 import util = require('util');
-import { getBinPath, lintDiagnosticCollection } from './util';
+import { getBinPath, lintDiagnosticCollection, getRootDir } from './util';
 
 interface ICheckResult {
   filename: string;
@@ -21,11 +21,24 @@ interface ILintRootResult {
 }
 
 export function lintDocument(document: vscode.TextDocument) {
+  // Clean last diagnostics of this document first.
+  // Because user may change the ignore or settings to disable.
+  lintDiagnosticCollection.delete(document.uri);
+
   const binPath = getBinPath();
+
+  const rootFolder = getRootDir(document);
+  // console.log('-------- rootFolder', rootFolder);
+
+  let opts = {} as any;
+  if (rootFolder) {
+    opts.cwd = rootFolder;
+  }
 
   cp.exec(
     binPath + ` --format json --lint \"${document.fileName}"`,
-    (err, stdout, stderr) => {
+    opts,
+    (err, stdout: string, stderr: string) => {
       if (stderr) {
         console.warn('AutoCorrect exec error:', stderr);
       }

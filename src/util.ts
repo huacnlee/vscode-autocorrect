@@ -1,19 +1,34 @@
-import cp = require("child_process");
-import vscode = require("vscode");
-import util = require("util");
-import http = require("https");
+import cp = require('child_process');
+import vscode = require('vscode');
+import util = require('util');
+import http = require('https');
 
 const checkUpdateURL =
-  "https://api.github.com/repos/huacnlee/autocorrect/releases/latest";
+  'https://api.github.com/repos/huacnlee/autocorrect/releases/latest';
 
-export const outputChannel = vscode.window.createOutputChannel("AutoCorrect");
+export const outputChannel = vscode.window.createOutputChannel('AutoCorrect');
 
 export const lintDiagnosticCollection =
-  vscode.languages.createDiagnosticCollection("AutoCorrect");
+  vscode.languages.createDiagnosticCollection('AutoCorrect');
 
 export function getBinPath(): string {
-  const config = vscode.workspace.getConfiguration("autocorrect");
-  return config["path"];
+  const config = vscode.workspace.getConfiguration('autocorrect');
+  return config['path'];
+}
+
+export function getRootDir(document: vscode.TextDocument): string | undefined {
+  if (vscode.window.activeTextEditor) {
+    document = vscode.window.activeTextEditor.document;
+  }
+
+  // console.log('--- getRootDir', document.uri);
+
+  let rootDir = vscode.workspace.getWorkspaceFolder(document.uri);
+  if (!rootDir) {
+    return;
+  }
+
+  return rootDir.uri.fsPath;
 }
 
 export async function getToolVersion(): Promise<string | undefined> {
@@ -21,38 +36,38 @@ export async function getToolVersion(): Promise<string | undefined> {
   const exec = util.promisify(cp.exec);
 
   try {
-    const { stdout, stderr } = await exec(binPath + " --version");
+    const { stdout, stderr } = await exec(binPath + ' --version');
     if (stderr) {
-      console.warn("AutoCorrect exec error:", stderr);
+      console.warn('AutoCorrect exec error:', stderr);
 
       return;
     }
 
-    const versionParts = stdout.split(" ");
+    const versionParts = stdout.split(' ');
     if (versionParts.length < 2) {
-      console.warn("AutoCorrect getToolVersion:", stdout);
+      console.warn('AutoCorrect getToolVersion:', stdout);
       return;
     }
 
     return versionParts[1].trim();
   } catch (e) {
-    console.warn("AutoCorrect exec error:", e);
+    console.warn('AutoCorrect exec error:', e);
   }
 
   return;
 }
 
 export async function httpGet(url: string): Promise<string> {
-  let body = "";
+  let body = '';
 
   await new Promise<void>((resolve, reject) => {
     http.get(
       checkUpdateURL,
-      { headers: { "user-agent": "vscode-auto-correct" } },
+      { headers: { 'user-agent': 'vscode-auto-correct' } },
       (res) => {
-        res.on("error", (err) => reject(err));
-        res.on("data", (data) => (body += data));
-        res.on("end", () => resolve());
+        res.on('error', (err) => reject(err));
+        res.on('data', (data) => (body += data));
+        res.on('end', () => resolve());
       }
     );
   });
@@ -61,15 +76,15 @@ export async function httpGet(url: string): Promise<string> {
 }
 
 export async function getLastestVersion(): Promise<string | undefined> {
-  console.log("Checking last version", checkUpdateURL);
+  console.log('Checking last version', checkUpdateURL);
   try {
     const body = await httpGet(checkUpdateURL);
     const data = JSON.parse(body);
-    const lastVersion = data.tag_name.replace("v", "");
+    const lastVersion = data.tag_name.replace('v', '');
 
     return lastVersion;
   } catch (err) {
-    console.error("AutoCorrect getLastestVersion error:", err);
+    console.error('AutoCorrect getLastestVersion error:', err);
     return;
   }
 }

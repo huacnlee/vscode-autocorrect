@@ -36,7 +36,6 @@ export function activate(ctx: vscode.ExtensionContext) {
   ctx.subscriptions.push(
     vscode.workspace.onDidOpenTextDocument((document) => {
       const config = vscode.workspace.getConfiguration('autocorrect');
-
       if (!config['enable']) {
         return;
       }
