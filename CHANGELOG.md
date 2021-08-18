@@ -1,3 +1,7 @@
+## 1.0.0
+
+- "Rewrite for use @huacnlee/autocorrect WebAssembly version, now not need AutoCorrect bin.
+
 ## 0.3.2
 
 - Fix lint display and quickfix for multi-line.
