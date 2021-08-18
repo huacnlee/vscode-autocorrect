@@ -1,3 +1,11 @@
+## 1.1.0
+
+- Revert to 0.5.1.
+
+## 1.0.0
+
+- Break reverted.
+
 ## 0.3.2
 
 - Fix lint display and quickfix for multi-line.
