@@ -1,7 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { checkUpdates } from './install';
 import { formatDocument } from './formatting';
 import { lintDocument } from './lint';
 import { lintDiagnosticCollection } from './util';
@@ -10,8 +9,6 @@ import QuickFixProvider from './quickfixProvider';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(ctx: vscode.ExtensionContext) {
-  checkUpdates();
-
   // QuickFix command
   vscode.languages.registerCodeActionsProvider('*', new QuickFixProvider());
   ctx.subscriptions.push(
@@ -52,6 +49,25 @@ export function activate(ctx: vscode.ExtensionContext) {
         await formatDocument(document);
         // await document.save();
       }
+    })
+  );
+
+  ctx.subscriptions.push(
+    vscode.workspace.onDidChangeTextDocument(async (event) => {
+      const config = vscode.workspace.getConfiguration('autocorrect');
+
+      if (!config['enable']) {
+        return;
+      }
+
+      if (ctx.workspaceState.get('autocorrect-linting', false)) {
+        return;
+      }
+
+      ctx.workspaceState.update('autocorrect-linting', true);
+      lintDocument(event.document).finally(() => {
+        ctx.workspaceState.update('autocorrect-linting', false);
+      });
     })
   );
 
