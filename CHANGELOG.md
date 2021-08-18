@@ -1,6 +1,7 @@
-## 1.0.0
+## 1.0.1
 
-- "Rewrite for use @huacnlee/autocorrect WebAssembly version, now not need AutoCorrect bin.
+- Rewrite for use @huacnlee/autocorrect WebAssembly version, now not need AutoCorrect bin.
+- Improve for run lint after text changed.
 
 ## 0.3.2
 
