@@ -2,11 +2,67 @@ import cp = require('child_process');
 import vscode = require('vscode');
 import util = require('util');
 import http = require('https');
-
-const checkUpdateURL =
-  'https://api.github.com/repos/huacnlee/autocorrect/releases/latest';
+var path = require('path');
+const autocorrectLib = import('@huacnlee/autocorrect');
+import ignore from 'ignore';
 
 export const outputChannel = vscode.window.createOutputChannel('AutoCorrect');
+let autocorrect: any;
+autocorrectLib
+  .then((ac) => {
+    autocorrect = ac;
+  })
+  .catch((err) => {
+    console.error('Load AutoCorrect WebAssmebly fail:', err);
+  });
+
+export async function isIgnore(
+  document: vscode.TextDocument
+): Promise<boolean> {
+  let root = getRootDir(document);
+  let filename = document.fileName;
+  if (!root) {
+    root = path.dirname(document.uri.fsPath);
+  }
+  const gitingore = await vscode.workspace.fs.readFile(
+    vscode.Uri.file(path.join(root, '.gitignore'))
+  );
+  const autocorrectignore = await vscode.workspace.fs.readFile(
+    vscode.Uri.file(path.join(root, '.autocorrectignore'))
+  );
+  const ignores = (gitingore + '\n' + autocorrectignore).split('\n');
+  const ig = ignore().add(ignores);
+
+  filename = path.relative(root, filename);
+
+  return ig.ignores(filename);
+}
+
+export async function formatFor(
+  raw: string,
+  document: vscode.TextDocument
+): Promise<any> {
+  let filename = document.fileName;
+
+  if (await isIgnore(document)) {
+    return raw;
+  }
+
+  return autocorrect.formatFor(raw, filename);
+}
+
+export async function lintFor(
+  raw: string,
+  document: vscode.TextDocument
+): Promise<any> {
+  let filename = document.fileName;
+
+  if (await isIgnore(document)) {
+    return null;
+  }
+
+  return autocorrect.lintFor(raw, filename);
+}
 
 export const lintDiagnosticCollection =
   vscode.languages.createDiagnosticCollection('AutoCorrect');
@@ -21,70 +77,12 @@ export function getRootDir(document: vscode.TextDocument): string | undefined {
     document = vscode.window.activeTextEditor.document;
   }
 
-  // console.log('--- getRootDir', document.uri);
-
   let rootDir = vscode.workspace.getWorkspaceFolder(document.uri);
   if (!rootDir) {
     return;
   }
 
+  console.log('--- getRootDir', rootDir.uri.fsPath);
+
   return rootDir.uri.fsPath;
-}
-
-export async function getToolVersion(): Promise<string | undefined> {
-  const binPath = getBinPath();
-  const exec = util.promisify(cp.exec);
-
-  try {
-    const { stdout, stderr } = await exec(binPath + ' --version');
-    if (stderr) {
-      console.warn('AutoCorrect exec error:', stderr);
-
-      return;
-    }
-
-    const versionParts = stdout.split(' ');
-    if (versionParts.length < 2) {
-      console.warn('AutoCorrect getToolVersion:', stdout);
-      return;
-    }
-
-    return versionParts[1].trim();
-  } catch (e) {
-    console.warn('AutoCorrect exec error:', e);
-  }
-
-  return;
-}
-
-export async function httpGet(url: string): Promise<string> {
-  let body = '';
-
-  await new Promise<void>((resolve, reject) => {
-    http.get(
-      checkUpdateURL,
-      { headers: { 'user-agent': 'vscode-auto-correct' } },
-      (res) => {
-        res.on('error', (err) => reject(err));
-        res.on('data', (data) => (body += data));
-        res.on('end', () => resolve());
-      }
-    );
-  });
-
-  return body;
-}
-
-export async function getLastestVersion(): Promise<string | undefined> {
-  console.log('Checking last version', checkUpdateURL);
-  try {
-    const body = await httpGet(checkUpdateURL);
-    const data = JSON.parse(body);
-    const lastVersion = data.tag_name.replace('v', '');
-
-    return lastVersion;
-  } catch (err) {
-    console.error('AutoCorrect getLastestVersion error:', err);
-    return;
-  }
 }

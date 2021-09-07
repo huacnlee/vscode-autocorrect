@@ -1,10 +1,7 @@
-## 1.1.0
+## 1.2.0
 
-- Revert to 0.5.1.
-
-## 1.0.0
-
-- Break reverted.
+- Rewrite for use @huacnlee/autocorrect WebAssembly version, now not need AutoCorrect bin.
+- Improve for run lint after text changed.
 
 ## 0.3.2
 

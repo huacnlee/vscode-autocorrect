@@ -1,26 +1,27 @@
 import vscode = require('vscode');
 import util = require('util');
-import { lintDiagnosticCollection, getRootDir } from './util';
+import { lintDiagnosticCollection, getRootDir, formatFor } from './util';
 
 export async function formatDocument(
   document: vscode.TextDocument
 ): Promise<void> {
-  const config = vscode.workspace.getConfiguration('autocorrect');
+  const documentText = document.getText();
+  const result = await formatFor(documentText, document);
 
-  const cmdPath = config['path'] || 'autocorrect';
+  console.log(result);
 
-  const exec = require('child_process').exec;
-  const execSync = util.promisify(exec);
-
-  const rootFolder = getRootDir(document);
-  let opts = {} as any;
-  if (rootFolder) {
-    opts.cwd = rootFolder;
+  if (result.error) {
+    return;
+  }
+  if (result.out.trim().length == 0) {
+    return;
+  }
+  if (result.out == documentText) {
+    return;
   }
 
-  execSync(cmdPath + ' --fix ' + document.fileName, opts, (err: Error) => {
-    console.log(err);
-  });
+  const writeData = Buffer.from(result.out, 'utf8');
+  vscode.workspace.fs.writeFile(document.uri, writeData);
 
   // clean warning
   lintDiagnosticCollection.clear();

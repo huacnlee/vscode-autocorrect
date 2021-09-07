@@ -31,9 +31,7 @@ Open VS Code `settings.json`:
   // 开启/关闭 AutoCorrect
   "autocorrect.enable": true,
   // 是否启用 formatOnSave，默认: trueue
-  "autocorrect.formatOnSave": true,
-  //Change the autocorrect bin path, default: autocorrect
-  "autocorrect.path": "autocorrect"
+  "autocorrect.formatOnSave": true
 }
 ```
 
@@ -70,16 +68,4 @@ function hello() {
   // autocorrect: true
   let a = '现在起 autocorrect 回到了启用的状态';
 }
-```
-
-## Requirements
-
-You must install `autocorrect` command first.
-
-https://github.com/huacnlee/autocorrect
-
-```bash
-$ curl -sSL https://git.io/JcGER | bash
-$ autocorrect -V
-1.3.1
 ```

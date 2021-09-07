@@ -1,17 +1,16 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { checkUpdates } from './install';
 import { formatDocument } from './formatting';
 import { lintDocument } from './lint';
 import { lintDiagnosticCollection } from './util';
 import QuickFixProvider from './quickfixProvider';
 
+let lastLintTimer: any;
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(ctx: vscode.ExtensionContext) {
-  checkUpdates();
-
   // QuickFix command
   vscode.languages.registerCodeActionsProvider('*', new QuickFixProvider());
   ctx.subscriptions.push(
@@ -34,13 +33,13 @@ export function activate(ctx: vscode.ExtensionContext) {
   ctx.subscriptions.push(lintDiagnosticCollection);
 
   ctx.subscriptions.push(
-    vscode.workspace.onDidOpenTextDocument((document) => {
+    vscode.workspace.onDidOpenTextDocument(async (document) => {
       const config = vscode.workspace.getConfiguration('autocorrect');
       if (!config['enable']) {
         return;
       }
 
-      lintDocument(document);
+      await lintDocument(document);
     })
   );
 
@@ -50,8 +49,24 @@ export function activate(ctx: vscode.ExtensionContext) {
       const document = vscode.window.activeTextEditor?.document;
       if (document) {
         await formatDocument(document);
-        // await document.save();
       }
+    })
+  );
+
+  ctx.subscriptions.push(
+    vscode.workspace.onDidChangeTextDocument(async (event) => {
+      const config = vscode.workspace.getConfiguration('autocorrect');
+
+      if (!config['enable']) {
+        return;
+      }
+
+      if (lastLintTimer) {
+        clearTimeout(lastLintTimer);
+      }
+      lastLintTimer = setTimeout(async () => {
+        await lintDocument(event.document);
+      }, 500);
     })
   );
 
@@ -64,7 +79,7 @@ export function activate(ctx: vscode.ExtensionContext) {
         return;
       }
 
-      lintDocument(document);
+      await lintDocument(document);
 
       if (config['formatOnSave']) {
         await formatDocument(document);
