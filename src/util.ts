@@ -24,13 +24,22 @@ export async function isIgnore(
   if (!root) {
     root = path.dirname(document.uri.fsPath);
   }
-  const gitingore = await vscode.workspace.fs.readFile(
-    vscode.Uri.file(path.join(root, '.gitignore'))
-  );
-  const autocorrectignore = await vscode.workspace.fs.readFile(
-    vscode.Uri.file(path.join(root, '.autocorrectignore'))
-  );
-  const ignores = (gitingore + '\n' + autocorrectignore).split('\n');
+  let ignoreBody = '';
+
+  try {
+    const gitingore = await vscode.workspace.fs.readFile(
+      vscode.Uri.file(path.join(root, '.gitignore'))
+    );
+    ignoreBody += gitingore.toString();
+  } catch (e) {}
+  try {
+    const autocorrectignore = await vscode.workspace.fs.readFile(
+      vscode.Uri.file(path.join(root, '.autocorrectignore'))
+    );
+    ignoreBody += autocorrectignore.toString();
+  } catch (e) {}
+
+  const ignores = ignoreBody.split('\n');
   const ig = ignore().add(ignores);
 
   filename = path.relative(root, filename);

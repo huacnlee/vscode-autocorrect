@@ -1,3 +1,7 @@
+## 1.2.1
+
+- Fix error when `.gitignore` or `.autocorrectignore` is not exist.
+
 ## 1.2.0
 
 - Rewrite for use @huacnlee/autocorrect WebAssembly version, now not need AutoCorrect bin.
