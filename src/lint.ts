@@ -25,22 +25,24 @@ interface ILintRootResult {
   messages: [ILintResult];
 }
 
-export function lintDocument(document: vscode.TextDocument): Promise<void> {
+export async function lintDocument(
+  document: vscode.TextDocument
+): Promise<void> {
   // Clean last diagnostics of this document first.
   // Because user may change the ignore or settings to disable.
   lintDiagnosticCollection.delete(document.uri);
 
   const documentText = document.getText();
-  return lintFor(documentText, document.fileName).then((result) => {
-    const ret: ICheckResult[] = [];
+  const result = await lintFor(documentText, document);
 
-    result.lines.map((line: any) => {
-      line.filename = document.fileName;
-      ret.push(line);
-    });
+  const ret: ICheckResult[] = [];
 
-    diagnosticResults(document, ret);
+  result.lines.map((line: any) => {
+    line.filename = document.fileName;
+    ret.push(line);
   });
+
+  diagnosticResults(document, ret);
 }
 
 function diagnosticResults(

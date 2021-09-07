@@ -6,6 +6,8 @@ import { lintDocument } from './lint';
 import { lintDiagnosticCollection } from './util';
 import QuickFixProvider from './quickfixProvider';
 
+let lastLintTimer: any;
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(ctx: vscode.ExtensionContext) {
@@ -31,13 +33,13 @@ export function activate(ctx: vscode.ExtensionContext) {
   ctx.subscriptions.push(lintDiagnosticCollection);
 
   ctx.subscriptions.push(
-    vscode.workspace.onDidOpenTextDocument((document) => {
+    vscode.workspace.onDidOpenTextDocument(async (document) => {
       const config = vscode.workspace.getConfiguration('autocorrect');
       if (!config['enable']) {
         return;
       }
 
-      lintDocument(document);
+      await lintDocument(document);
     })
   );
 
@@ -47,7 +49,6 @@ export function activate(ctx: vscode.ExtensionContext) {
       const document = vscode.window.activeTextEditor?.document;
       if (document) {
         await formatDocument(document);
-        // await document.save();
       }
     })
   );
@@ -60,14 +61,12 @@ export function activate(ctx: vscode.ExtensionContext) {
         return;
       }
 
-      if (ctx.workspaceState.get('autocorrect-linting', false)) {
-        return;
+      if (lastLintTimer) {
+        clearTimeout(lastLintTimer);
       }
-
-      ctx.workspaceState.update('autocorrect-linting', true);
-      lintDocument(event.document).finally(() => {
-        ctx.workspaceState.update('autocorrect-linting', false);
-      });
+      lastLintTimer = setTimeout(async () => {
+        await lintDocument(event.document);
+      }, 500);
     })
   );
 
@@ -80,7 +79,7 @@ export function activate(ctx: vscode.ExtensionContext) {
         return;
       }
 
-      lintDocument(document);
+      await lintDocument(document);
 
       if (config['formatOnSave']) {
         await formatDocument(document);
