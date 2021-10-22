@@ -1,3 +1,7 @@
+## 1.2.2
+
+- Fix for not add space near the `*` chars.
+
 ## 1.2.1
 
 - Fix error when `.gitignore` or `.autocorrectignore` is not exist.
