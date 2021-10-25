@@ -1,3 +1,9 @@
+## 1.3.0
+
+Suggest you upgrade this version, by test a large file (1000 lines may speed up 10x - 100x).
+
+- Upgrade AutoCorrect 1.5.0 for improve performance for large files.
+
 ## 1.2.2
 
 - Fix for not add space near the `*` chars.
