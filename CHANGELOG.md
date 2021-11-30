@@ -1,6 +1,7 @@
-## 1.3.1
+## 1.3.2
 
-- Upgrade AutoCorrect 1.5.1 for fix `//!` comment format for Rust.
+- Fix `//!` comment format for Rust.
+- Fix full width for avoid convert leading punctuation char.
 
 ## 1.3.0
 
