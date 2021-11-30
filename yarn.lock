@@ -330,9 +330,9 @@
     strip-json-comments "^3.1.1"
 
 "@huacnlee/autocorrect@^1.4.3":
-  version "1.5.0"
-  resolved "https://registry.npmjs.org/@huacnlee/autocorrect/-/autocorrect-1.5.0.tgz#d2cb39924bd0eb6ca529d3529227990862d9a8ac"
-  integrity sha512-CRIAEq7zuzU0r8pM8TS3VFcE1dyTZgEkH/Mywkg6yKHLj+tYpTQ52KYh6/TNHVes1K3fZ8BugT11yB1NNDMtzQ==
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/@huacnlee/autocorrect/-/autocorrect-1.5.1.tgz#6ea15a668d4ac926510dbd3d292b09e7f3f25796"
+  integrity sha512-1KObFsM47bAO6BkTM5zkFQXzfYRt7fL+GEt0pGtMh7+1eoQLIZdLbFlpB+mkZvLEBNltEkLTcwBIdKwG7IrqaQ==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
