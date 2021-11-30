@@ -4,7 +4,7 @@
   "publisher": "huacnlee",
   "homepage": "https://github.com/huacnlee/autocorrect",
   "description": "A linter and formatter for help you improve copywriting, to correct spaces, punctuations between CJK (Chinese, Japanese, Korean).",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "license": "MIT",
   "engines": {
     "vscode": "^1.57.0"

@@ -1,3 +1,7 @@
+## 1.3.1
+
+- Upgrade AutoCorrect 1.5.1 for fix `//!` comment format for Rust.
+
 ## 1.3.0
 
 Suggest you upgrade this version, by test a large file (1000 lines may speed up 10x - 100x).
