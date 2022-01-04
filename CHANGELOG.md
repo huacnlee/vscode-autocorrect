@@ -1,3 +1,9 @@
+## 1.3.3
+
+- Upgrade AutoCorrect 1.5.4 for fix issues.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.5.4
+
 ## 1.3.2
 
 - Fix `//!` comment format for Rust.

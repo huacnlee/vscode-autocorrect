@@ -71,7 +71,7 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
-    "@huacnlee/autocorrect": "^1.4.3",
+    "@huacnlee/autocorrect": "^1.5.4",
     "global": "^4.4.0",
     "ignore": "^5.1.8",
     "vsce": "^1.96.1"
