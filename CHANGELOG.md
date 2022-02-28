@@ -1,4 +1,4 @@
-## 1.3.4
+## 1.3.5
 
 - Upgrade AutoCorrect 1.5.6 for fix issues.
 
