@@ -1,3 +1,9 @@
+## 1.3.6
+
+- Upgrade AutoCorrect 1.5.9 for fix issues.
+
+- https://github.com/huacnlee/autocorrect/releases/tag/v1.5.9
+
 ## 1.3.5
 
 - Upgrade AutoCorrect 1.5.6 for fix issues.
