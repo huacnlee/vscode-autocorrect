@@ -1,3 +1,7 @@
+## 1.3.7
+
+- Fix for let format and lint get same result for Markdown Table.
+
 ## 1.3.6
 
 - Upgrade AutoCorrect 1.5.9 for fix issues.
