@@ -1,3 +1,9 @@
+## 1.3.8
+
+- Upgrade AutoCorrect 1.5.13 for fix issues.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.5.13
+
 ## 1.3.7
 
 - Fix for let format and lint get same result for Markdown Table.
