@@ -1,3 +1,12 @@
+## 1.4.0
+
+- Add Gettext (.po, .pot) support.
+- Add to support multiple config files (.conf, .properties, .toml, .ini) #30.
+
+> Config files just support comments syntax.
+
+https://github.com/huacnlee/autocorrect/releases/edit/v1.6.0
+
 ## 1.3.8
 
 - Upgrade AutoCorrect 1.5.13 for fix issues.
