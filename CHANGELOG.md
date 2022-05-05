@@ -1,3 +1,9 @@
+## 1.5.0
+
+- Support `.autocorrectrc` config.
+
+https://github.com/huacnlee/autocorrect/releases/v1.7.0
+
 ## 1.4.0
 
 - Add Gettext (.po, .pot) support.
@@ -5,7 +11,7 @@
 
 > Config files just support comments syntax.
 
-https://github.com/huacnlee/autocorrect/releases/edit/v1.6.0
+https://github.com/huacnlee/autocorrect/releases/v1.6.0
 
 ## 1.3.8
 

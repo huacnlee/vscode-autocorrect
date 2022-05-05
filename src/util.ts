@@ -6,6 +6,8 @@ var path = require('path');
 const autocorrectLib = import('@huacnlee/autocorrect');
 import ignore from 'ignore';
 
+let lastConfigMtime = 0;
+
 export const outputChannel = vscode.window.createOutputChannel('AutoCorrect');
 let autocorrect: any;
 autocorrectLib
@@ -16,14 +18,26 @@ autocorrectLib
     console.error('Load AutoCorrect WebAssmebly fail:', err);
   });
 
+async function reloadConfig(document?: vscode.TextDocument) {
+  let root = getRootDir(document);
+
+  let filename = vscode.Uri.file(path.join(root, '.autocorrectrc'));
+  // Ignore if config file not changed.
+  let stat = await vscode.workspace.fs.stat(filename);
+  if (stat.mtime === lastConfigMtime) {
+    return;
+  }
+  lastConfigMtime = stat.mtime;
+
+  const configStr = await vscode.workspace.fs.readFile(filename);
+  autocorrect.loadConfig(configStr.toString());
+}
+
 export async function isIgnore(
   document: vscode.TextDocument
 ): Promise<boolean> {
   let root = getRootDir(document);
   let filename = document.fileName;
-  if (!root) {
-    root = path.dirname(document.uri.fsPath);
-  }
   let ignoreBody = '';
 
   try {
@@ -57,6 +71,8 @@ export async function formatFor(
     return raw;
   }
 
+  await reloadConfig(document);
+
   return autocorrect.formatFor(raw, filename);
 }
 
@@ -70,6 +86,8 @@ export async function lintFor(
     return null;
   }
 
+  await reloadConfig(document);
+
   return autocorrect.lintFor(raw, filename);
 }
 
@@ -81,14 +99,18 @@ export function getBinPath(): string {
   return config['path'];
 }
 
-export function getRootDir(document: vscode.TextDocument): string | undefined {
+export function getRootDir(document?: vscode.TextDocument): string | undefined {
   if (vscode.window.activeTextEditor) {
     document = vscode.window.activeTextEditor.document;
   }
 
+  if (!document) {
+    return undefined;
+  }
+
   let rootDir = vscode.workspace.getWorkspaceFolder(document.uri);
   if (!rootDir) {
-    return;
+    return path.dirname(document.uri.fsPath);
   }
 
   console.log('--- getRootDir', rootDir.uri.fsPath);
