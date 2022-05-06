@@ -1,8 +1,8 @@
-## 1.5.1
+## 1.5.2
 
 - Bugfix.
 
-https://github.com/huacnlee/autocorrect/releases/v1.7.1
+https://github.com/huacnlee/autocorrect/releases/v1.7.2
 
 ## 1.5.0
 
