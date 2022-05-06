@@ -1,3 +1,9 @@
+## 1.5.1
+
+- Bugfix.
+
+https://github.com/huacnlee/autocorrect/releases/v1.7.1
+
 ## 1.5.0
 
 - Support `.autocorrectrc` config.
