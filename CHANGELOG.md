@@ -1,3 +1,9 @@
+## 1.5.4
+
+- Disable Spellcheck by default.
+
+https://github.com/huacnlee/autocorrect/releases/v1.7.4
+
 ## 1.5.3
 
 - Bugfix.
