@@ -30,9 +30,35 @@ Open VS Code `settings.json`:
 {
   // 开启/关闭 AutoCorrect
   "autocorrect.enable": true,
-  // 是否启用 formatOnSave，默认: trueue
+  // 是否启用 formatOnSave，默认: true
   "autocorrect.formatOnSave": true
 }
+```
+
+### AutoCorrect 配置文件
+
+参见：https://github.com/huacnlee/autocorrect#configuration
+
+支持 `.autocorrectrc` 配置文件
+
+```yml
+# 配置拼写检查
+spellcheck:
+  # 0 - 仅用, 1 - 开启, 2 - 仅做检查提示
+  mode: 1
+  # 名字纠正（主要不要用常见的英文单词）
+  words:
+    - GitHub
+    - App Store
+    # This means "appstore" into "App Store"
+    - AppStore = App Store
+    - Git
+    - Node.js
+    - nodejs = Node.js
+    - VIM
+    - DNS
+    - HTTP
+    - SSL
 ```
 
 ## 临时禁用 AutoCorrect
@@ -44,7 +70,7 @@ Open VS Code `settings.json`:
 
 你可以在项目根目录准备一个 `.autocorrectignore` 来告诉 AutoCorrect 那些文件需要忽略，用法和 `.gitignore` 类似，同时 AutoCorrect 默认也会忽略 `.gitignore` 匹配的文件。
 
-此外，你还可以采用 `autocorrect: false` 或 `autocorrect-disable` 在文件内部禁用某些行，当 AutoCorrect 检测到此标记，将会暂时停用，知道遇到 `autocorrect: true` 或 `autocorrect-enable` 将会恢复。
+此外，你还可以采用 `autocorrect: false` 或 `autocorrect-disable` 在文件内部禁用某些行，当 AutoCorrect 检测到此标记，将会暂时停用，直到遇到下一个 `autocorrect: true` 或 `autocorrect-enable` 将会恢复。
 
 例如：
 
