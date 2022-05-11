@@ -29,8 +29,10 @@ async function reloadConfig(document?: vscode.TextDocument) {
   }
   lastConfigMtime = stat.mtime;
 
-  const configStr = await vscode.workspace.fs.readFile(filename);
-  autocorrect.loadConfig(configStr.toString());
+  try {
+    const configStr = await vscode.workspace.fs.readFile(filename);
+    autocorrect.loadConfig(configStr.toString());
+  } catch (e) {}
 }
 
 export async function isIgnore(

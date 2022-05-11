@@ -1,3 +1,9 @@
+## 1.5.6
+
+- Avoid load config error, when `.autocorrectrc` not exists.
+
+https://github.com/huacnlee/autocorrect/releases/v1.7.4
+
 ## 1.5.4
 
 - Disable Spellcheck by default.
