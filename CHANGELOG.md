@@ -1,3 +1,10 @@
+## 1.6.0
+
+- Add LaTex support.
+- Add AsciiDoc support.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.8.0
+
 ## 1.5.6
 
 - Avoid load config error, when `.autocorrectrc` not exists.
