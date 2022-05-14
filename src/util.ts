@@ -23,11 +23,15 @@ async function reloadConfig(document?: vscode.TextDocument) {
 
   let filename = vscode.Uri.file(path.join(root, '.autocorrectrc'));
   // Ignore if config file not changed.
-  let stat = await vscode.workspace.fs.stat(filename);
-  if (stat.mtime === lastConfigMtime) {
+  try {
+    let stat = await vscode.workspace.fs.stat(filename);
+    if (stat.mtime === lastConfigMtime) {
+      return;
+    }
+    lastConfigMtime = stat.mtime;
+  } catch (e) {
     return;
   }
-  lastConfigMtime = stat.mtime;
 
   try {
     const configStr = await vscode.workspace.fs.readFile(filename);
