@@ -1,3 +1,7 @@
+## 1.6.1
+
+- Fix stat error when .autocorrectrc not exist.
+
 ## 1.6.0
 
 - Add LaTex support.
