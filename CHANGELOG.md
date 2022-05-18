@@ -1,3 +1,9 @@
+## 1.6.2
+
+- Improve Spellcheck for only change words neer the CJK or Fullwidth punctuations.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.8.1
+
 ## 1.6.1
 
 - Fix stat error when .autocorrectrc not exist.
