@@ -1,3 +1,9 @@
+## 1.6.3
+
+- Fix for avoid remove space prefix within Markdown list, quote case.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.9.2
+
 ## 1.6.2
 
 - Improve Spellcheck for only change words neer the CJK or Fullwidth punctuations.
