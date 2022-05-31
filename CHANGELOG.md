@@ -1,3 +1,13 @@
+## 1.6.4
+
+- Fix for avoid remove space in Markdown Table.
+- Change upgrade command by update as default: autocorrect update.
+- Fix space with -100, +100 case.
+- Fix for avoid change URL or Path.
+- Fix remove spaces near the punctuations.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.9.4
+
 ## 1.6.3
 
 - Fix for avoid remove space prefix within Markdown list, quote case.
