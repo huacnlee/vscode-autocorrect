@@ -1,3 +1,9 @@
+## 1.6.5
+
+- Fix #53, #43 avoid change `!` near the alphabet.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.9.5
+
 ## 1.6.4
 
 - Fix for avoid remove space in Markdown Table.
