@@ -1,28 +1,31 @@
 import vscode = require('vscode');
 import cp = require('child_process');
 import util = require('util');
-import {
-  getBinPath,
-  lintDiagnosticCollection,
-  getRootDir,
-  lintFor,
-} from './util';
+import { lintDiagnosticCollection, lintFor } from './util';
 
 interface ICheckResult {
   filename: string;
+  /**
+   * line
+   */
   l: number;
+  /**
+   * column
+   */
   c: number;
+  /**
+   * The old string
+   */
   old: string;
+  /**
+   * The corrected new string
+   */
   new: string;
 }
 
 interface ILintResult {
   filepath: number;
   lines: [ICheckResult];
-}
-interface ILintRootResult {
-  count: number;
-  messages: [ILintResult];
 }
 
 export async function lintDocument(

@@ -119,7 +119,7 @@ export function getRootDir(document?: vscode.TextDocument): string | undefined {
     return path.dirname(document.uri.fsPath);
   }
 
-  console.log('--- getRootDir', rootDir.uri.fsPath);
+  // console.log('--- getRootDir', rootDir.uri.fsPath);
 
   return rootDir.uri.fsPath;
 }
