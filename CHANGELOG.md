@@ -1,3 +1,12 @@
+## 1.7.0
+
+- Add C, C++ supports.
+- fix(Markdown): Avoid add space on WikiLinks.
+- Improve AsciiDoc.
+- Fix Markdown for avoid add space near the link #54
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.10.0
+
 ## 1.6.5
 
 - Fix #53, #43 avoid change `!` near the alphabet.
