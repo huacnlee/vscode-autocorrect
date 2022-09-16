@@ -329,10 +329,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@huacnlee/autocorrect@^1.10.1":
-  version "1.10.1"
-  resolved "https://registry.npmmirror.com/@huacnlee/autocorrect/-/autocorrect-1.10.1.tgz#859d4146faf130445bcfdb37d141a1c881dd773a"
-  integrity sha512-pLrwkY8csXbPKz4LFVqL0HNqUrIj3sCYwdcs66CuIVZ+2RUfSmJ7QcXbPGp1zyw/lLjzKFb1oRmnZ+qV7zDoPA==
+"@huacnlee/autocorrect@^1.10.4":
+  version "1.10.4"
+  resolved "https://registry.yarnpkg.com/@huacnlee/autocorrect/-/autocorrect-1.10.4.tgz#dc4737518d86e8d724a1e4428941ca3bd4c27f2d"
+  integrity sha512-nvmDKyy8IlTDa/GGNgsKezUs7lml0Gczew+T1Hv75dGzUZX/cW0qLwz5UMFjB8gF9zW1vFKoOT0CxVGkEPbD9A==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"

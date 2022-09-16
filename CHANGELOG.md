@@ -1,3 +1,13 @@
+## 1.7.2
+
+- Markdown support comment for disable autocrrect.
+
+```md
+<!-- autocorrect: false -->
+This line will ignore
+<!-- autocorrect: true -->
+```
+
 ## 1.7.0
 
 - Add C, C++ supports.
