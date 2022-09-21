@@ -1,10 +1,22 @@
+## 1.7.3
+
+- Improve performance for some complex file case.
+- core: Limit parse stack max depth for avoiding some complex parser will hangs indefinitely.
+- core: Improve Markdown parser for supports meta info.
+- core: Improve HTML parser details.
+- core: Fix Markdown parser may deadlock issue.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.10.5
+
 ## 1.7.2
 
 - Markdown support comment for disable autocrrect.
 
 ```md
 <!-- autocorrect: false -->
+
 This line will ignore
+
 <!-- autocorrect: true -->
 ```
 
