@@ -14,13 +14,15 @@
 
 [AutoCorrect](https://github.com/huacnlee/autocorrect) 可以在打开文件或保存文件后，对当前文件做 Lint 检查，并用颜色标注出有问题的部分。
 
-<img width="901" alt="huacnlee.autocorrect" src="https://user-images.githubusercontent.com/5518/126027685-cee6f91d-1a10-4fcc-b5f4-1a99ac4cd5ae.png">
+<img width="900" alt="huacnlee.autocorrect" src="https://user-images.githubusercontent.com/5518/191890126-4e0c99dc-91ce-4262-a774-3813a636eea1.png">
+
+## 使用演示
+
+<img width="900" src="https://user-images.githubusercontent.com/5518/191890586-f184b798-9432-48e8-a7ff-92b5c9f8f230.gif" />
 
 ### Use FormatOnSave
 
 当开启 FormatOnSave 的时候，保存文件会自动纠正有问题的部分。
-
-![autocorrect](https://user-images.githubusercontent.com/5518/123918476-7ed38a00-d9b6-11eb-91f7-6af7a9c49a3e.gif)
 
 ## Configuration
 
