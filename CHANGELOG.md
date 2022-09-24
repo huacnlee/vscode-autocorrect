@@ -1,3 +1,9 @@
+## 1.7.5
+
+- Fix #75 avoid change HTML tag attributes in Markdown.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v1.10.8
+
 ## 1.7.3
 
 - Improve performance for some complex file case.
