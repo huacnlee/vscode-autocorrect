@@ -21,6 +21,11 @@ interface ICheckResult {
    * The corrected new string
    */
   new: string;
+
+  /**
+   * 1 error, 2 warning
+   */
+  severity: 0 | 1 | 2;
 }
 
 interface ILintResult {
@@ -67,14 +72,22 @@ function diagnosticResults(
       result.c + result.old.length - 1
     );
 
-    const msg = result.new;
+    let msg = result.new;
+    let source = 'AutoCorrect';
 
-    const diagnostic = new vscode.Diagnostic(
-      range,
-      msg,
-      vscode.DiagnosticSeverity.Warning
-    );
-    diagnostic.source = 'autocorrect';
+    let severity = vscode.DiagnosticSeverity.Information;
+    switch (result.severity) {
+      case 1:
+        severity = vscode.DiagnosticSeverity.Error;
+        break;
+      case 2:
+        severity = vscode.DiagnosticSeverity.Warning;
+        source = 'Spellcheck';
+        break;
+    }
+
+    const diagnostic = new vscode.Diagnostic(range, msg, severity);
+    diagnostic.source = source;
 
     diagnostics.push(diagnostic);
   });

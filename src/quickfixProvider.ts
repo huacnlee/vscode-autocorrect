@@ -1,12 +1,12 @@
 import {
-  CodeActionProvider,
-  TextDocument,
-  Range,
-  CodeActionContext,
   CancellationToken,
   CodeAction,
+  CodeActionContext,
   CodeActionKind,
-} from "vscode";
+  CodeActionProvider,
+  Range,
+  TextDocument,
+} from 'vscode';
 
 export default class QuickFixProvider implements CodeActionProvider {
   public async provideCodeActions(
@@ -17,18 +17,21 @@ export default class QuickFixProvider implements CodeActionProvider {
   ): Promise<any> {
     const codeActions = context.diagnostics
       .filter((diagnostic) => {
-        return diagnostic.source === "autocorrect";
+        return (
+          diagnostic.source === 'AutoCorrect' ||
+          diagnostic.source === 'Spellcheck'
+        );
       })
       .map((diagnostic) => {
         const fixAction = new CodeAction(
-          "AutoCorrect",
+          diagnostic.source || 'AutoCorrect',
           CodeActionKind.QuickFix
         );
         fixAction.isPreferred = true;
         fixAction.diagnostics = [diagnostic];
         fixAction.command = {
-          title: "AutoCorrect",
-          command: "autocorrect.diagnostic-quickfix",
+          title: 'AutoCorrect',
+          command: 'autocorrect.diagnostic-quickfix',
           arguments: [document, diagnostic, fixAction],
         };
 
