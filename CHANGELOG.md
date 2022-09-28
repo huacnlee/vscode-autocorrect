@@ -1,3 +1,8 @@
+## 1.8.0
+
+- Use `Error` diagnostic to show correct issue.
+- Add `Warning` diagnostic to show spellcheck issue.
+
 ## 1.7.5
 
 - Fix #75 avoid change HTML tag attributes in Markdown.
