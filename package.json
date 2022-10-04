@@ -4,7 +4,7 @@
   "publisher": "huacnlee",
   "homepage": "https://github.com/huacnlee/autocorrect",
   "description": "AutoCorrect is a linter and formatter to help you to improve copywriting, correct spaces, words, punctuations between CJK (Chinese, Japanese, Korean).",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "license": "MIT",
   "engines": {
     "vscode": "^1.57.0"
@@ -54,7 +54,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "dependencies": {
-    "@huacnlee/autocorrect": "^1.11.0",
+    "@huacnlee/autocorrect": "^2.0.0",
     "global": "^4.4.0",
     "ignore": "^5.1.8",
     "vsce": "^1.96.1"

@@ -1,3 +1,9 @@
+## 2.0.0
+
+- Upgrade AutoCorrect 2.0.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.0.0
+
 ## 1.8.0
 
 - Use `Error` diagnostic to show correct issue.
