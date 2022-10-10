@@ -54,7 +54,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "dependencies": {
-    "@huacnlee/autocorrect": "^2.0.0",
+    "@huacnlee/autocorrect": "^2.0.1",
     "global": "^4.4.0",
     "ignore": "^5.1.8",
     "vsce": "^1.96.1"

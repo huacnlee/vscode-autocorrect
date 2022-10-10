@@ -78,10 +78,10 @@ function diagnosticResults(
     let severity = vscode.DiagnosticSeverity.Information;
     switch (result.severity) {
       case 1:
-        severity = vscode.DiagnosticSeverity.Error;
+        severity = vscode.DiagnosticSeverity.Warning;
         break;
       case 2:
-        severity = vscode.DiagnosticSeverity.Warning;
+        severity = vscode.DiagnosticSeverity.Information;
         source = 'Spellcheck';
         break;
     }
