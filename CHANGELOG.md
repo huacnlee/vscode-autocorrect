@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Change diagnostic message for lint use warning and spellcheck use information style.
+
 ## 2.0.0
 
 - Upgrade AutoCorrect 2.0.
