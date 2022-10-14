@@ -1,27 +1,26 @@
-import cp = require('child_process');
 import vscode = require('vscode');
-import util = require('util');
-import http = require('https');
-var path = require('path');
-const autocorrectLib = import('@huacnlee/autocorrect');
 import ignore from 'ignore';
+import * as path from 'path';
+import { Utils } from 'vscode-uri';
+
+const autocorrectLib = import('@huacnlee/autocorrect');
 
 let lastConfigMtime = 0;
-
 export const outputChannel = vscode.window.createOutputChannel('AutoCorrect');
+
 let autocorrect: any;
 autocorrectLib
   .then((ac) => {
     autocorrect = ac;
   })
   .catch((err) => {
-    console.error('Load AutoCorrect WebAssmebly fail:', err);
+    console.error('Failed to load AutoCorrect WebAssembly:', err);
   });
 
 async function reloadConfig(document?: vscode.TextDocument) {
   let root = getRootDir(document);
 
-  let filename = vscode.Uri.file(path.join(root, '.autocorrectrc'));
+  let filename = Utils.joinPath(root, '.autocorrectrc');
   // Ignore if config file not changed.
   try {
     let stat = await vscode.workspace.fs.stat(filename);
@@ -48,13 +47,13 @@ export async function isIgnore(
 
   try {
     const gitingore = await vscode.workspace.fs.readFile(
-      vscode.Uri.file(path.join(root, '.gitignore'))
+      Utils.joinPath(root, '.gitignore')
     );
     ignoreBody += gitingore.toString();
   } catch (e) {}
   try {
     const autocorrectignore = await vscode.workspace.fs.readFile(
-      vscode.Uri.file(path.join(root, '.autocorrectignore'))
+      Utils.joinPath(root, '.autocorrectignore')
     );
     ignoreBody += autocorrectignore.toString();
   } catch (e) {}
@@ -62,7 +61,7 @@ export async function isIgnore(
   const ignores = ignoreBody.split('\n');
   const ig = ignore().add(ignores);
 
-  filename = path.relative(root, filename);
+  filename = path.relative(root.path, filename);
 
   return ig.ignores(filename);
 }
@@ -105,21 +104,21 @@ export function getBinPath(): string {
   return config['path'];
 }
 
-export function getRootDir(document?: vscode.TextDocument): string | undefined {
+export function getRootDir(document?: vscode.TextDocument): vscode.Uri {
   if (vscode.window.activeTextEditor) {
     document = vscode.window.activeTextEditor.document;
   }
 
   if (!document) {
-    return undefined;
+    return vscode.Uri.parse('/');
   }
 
   let rootDir = vscode.workspace.getWorkspaceFolder(document.uri);
   if (!rootDir) {
-    return path.dirname(document.uri.fsPath);
+    return Utils.dirname(document.uri);
   }
 
-  // console.log('--- getRootDir', rootDir.uri.fsPath);
+  // console.log('--- rootDir:', rootDir.uri);
 
-  return rootDir.uri.fsPath;
+  return rootDir.uri;
 }

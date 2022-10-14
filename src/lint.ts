@@ -1,6 +1,4 @@
 import vscode = require('vscode');
-import cp = require('child_process');
-import util = require('util');
 import { lintDiagnosticCollection, lintFor } from './util';
 
 interface ICheckResult {

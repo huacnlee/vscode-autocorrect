@@ -1,14 +1,11 @@
 import vscode = require('vscode');
-import util = require('util');
-import { lintDiagnosticCollection, getRootDir, formatFor } from './util';
+import { formatFor, lintDiagnosticCollection } from './util';
 
 export async function formatDocument(
   document: vscode.TextDocument
 ): Promise<void> {
   const documentText = document.getText();
   const result = await formatFor(documentText, document);
-
-  console.log(result);
 
   if (result.error) {
     return;

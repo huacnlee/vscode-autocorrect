@@ -10,13 +10,18 @@
     "vscode": "^1.57.0"
   },
   "categories": [
-    "Formatters"
+    "Formatters",
+    "Linters"
   ],
+  "capabilities": {
+    "virtualWorkspaces": true
+  },
   "activationEvents": [
     "onStartupFinished"
   ],
   "icon": "icon.png",
-  "main": "./dist/extension.js",
+  "main": "./dist/extension-node",
+  "browser": "./dist/extension-web",
   "contributes": {
     "commands": [
       {
@@ -31,7 +36,7 @@
         "autocorrect.enable": {
           "type": "boolean",
           "default": true,
-          "description": "Turn on/off enable AutoCorrect"
+          "description": "Turn on/off AutoCorrect"
         },
         "autocorrect.formatOnSave": {
           "type": "boolean",
@@ -54,10 +59,12 @@
     "test": "node ./out/test/runTest.js"
   },
   "dependencies": {
-    "@huacnlee/autocorrect": "^2.0.1",
+    "@huacnlee/autocorrect": "^2.1.1",
     "global": "^4.4.0",
     "ignore": "^5.1.8",
-    "vsce": "^1.96.1"
+    "path-browserify": "^1.0.1",
+    "vsce": "^1.96.1",
+    "vscode-uri": "^3.0.6"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
