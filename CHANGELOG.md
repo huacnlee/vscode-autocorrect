@@ -1,3 +1,9 @@
+## 2.1.0
+
+- Implement Web Extension feature for support use on VS Code Web version, like [VS Code Dev](https://vscode.dev/), [GitHub Dev](https://github.dev)
+- Quick fix behavior is changed, just replace text not save.
+- Avoid invoke format action when use `Save without format`.
+
 ## 2.0.1
 
 - Change diagnostic message for lint use warning and spellcheck use information style.
