@@ -3,14 +3,24 @@
 import * as vscode from 'vscode';
 import { formatDocument } from './formatting';
 import { lintDocument } from './lint';
-import { lintDiagnosticCollection } from './util';
 import QuickFixProvider from './quickfixProvider';
+import { lintDiagnosticCollection } from './util';
 
 let lastLintTimer: any;
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(ctx: vscode.ExtensionContext) {
+  // @ts-ignore
+  __webpack_public_path__ =
+    // @ts-ignore
+    ctx.extensionUri.toString().replace('file:///', '') + '/dist/';
+
+  // console.log(
+  //   '---------- __webpack_public_path__:',
+  //   ctx.extensionUri.toString()
+  // );
+
   // QuickFix command
   vscode.languages.registerCodeActionsProvider('*', new QuickFixProvider());
   ctx.subscriptions.push(

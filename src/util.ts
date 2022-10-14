@@ -3,19 +3,27 @@ import ignore from 'ignore';
 import * as path from 'path';
 import { Utils } from 'vscode-uri';
 
-const autocorrectLib = import('@huacnlee/autocorrect');
+let autocorrect: any;
 
 let lastConfigMtime = 0;
 export const outputChannel = vscode.window.createOutputChannel('AutoCorrect');
 
-let autocorrect: any;
-autocorrectLib
-  .then((ac) => {
-    autocorrect = ac;
-  })
-  .catch((err) => {
-    console.error('Failed to load AutoCorrect WebAssembly:', err);
+const getAutoCorrect = async () => {
+  if (autocorrect) {
+    return autocorrect;
+  }
+
+  autocorrect = await new Promise((resolve, reject) => {
+    import('@huacnlee/autocorrect')
+      .then((ac) => {
+        resolve(ac);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
+  return autocorrect;
+};
 
 async function reloadConfig(document?: vscode.TextDocument) {
   let root = getRootDir(document);
@@ -34,7 +42,7 @@ async function reloadConfig(document?: vscode.TextDocument) {
 
   try {
     const configStr = await vscode.workspace.fs.readFile(filename);
-    autocorrect.loadConfig(configStr.toString());
+    (await getAutoCorrect()).loadConfig(configStr.toString());
   } catch (e) {}
 }
 
@@ -78,7 +86,7 @@ export async function formatFor(
 
   await reloadConfig(document);
 
-  return autocorrect.formatFor(raw, filename);
+  return (await getAutoCorrect()).formatFor(raw, filename);
 }
 
 export async function lintFor(
@@ -93,7 +101,7 @@ export async function lintFor(
 
   await reloadConfig(document);
 
-  return autocorrect.lintFor(raw, filename);
+  return (await getAutoCorrect()).lintFor(raw, filename);
 }
 
 export const lintDiagnosticCollection =
