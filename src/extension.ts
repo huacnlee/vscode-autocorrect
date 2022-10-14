@@ -34,7 +34,6 @@ export function activate(ctx: vscode.ExtensionContext) {
         const edit = new vscode.WorkspaceEdit();
         edit.replace(document.uri, diagnostic.range, diagnostic.message);
         await vscode.workspace.applyEdit(edit);
-        await document.save();
       }
     )
   );
@@ -82,17 +81,18 @@ export function activate(ctx: vscode.ExtensionContext) {
 
   // Format on Save
   ctx.subscriptions.push(
-    vscode.workspace.onDidSaveTextDocument(async (document) => {
-      const config = vscode.workspace.getConfiguration('autocorrect');
+    vscode.workspace.onWillSaveTextDocument(async (e) => {
+      if (e.reason === vscode.TextDocumentSaveReason.Manual) {
+        const document = e.document;
+        const config = vscode.workspace.getConfiguration('autocorrect');
 
-      if (!config['enable']) {
-        return;
-      }
+        if (!config['enable']) {
+          return;
+        }
 
-      await lintDocument(document);
-
-      if (config['formatOnSave']) {
-        await formatDocument(document);
+        if (config['formatOnSave']) {
+          await formatDocument(document);
+        }
       }
     })
   );
