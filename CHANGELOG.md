@@ -1,3 +1,9 @@
+## 2.1.1
+
+- Fix `path should be a`path.relative()`d string, but got ".."` error on Windows.
+
+https://github.com/huacnlee/autocorrect/issues/100
+
 ## 2.1.0
 
 - Implement Web Extension feature for support use on VS Code Web version, like [VS Code Dev](https://vscode.dev/), [GitHub Dev](https://github.dev)
