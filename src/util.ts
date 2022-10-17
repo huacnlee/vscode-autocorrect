@@ -67,7 +67,9 @@ export async function isIgnore(
   } catch (e) {}
 
   const ignores = ignoreBody.split('\n');
-  const ig = ignore().add(ignores);
+  const ig = ignore({
+    allowRelativePaths: true,
+  }).add(ignores);
 
   filename = path.relative(root.path, filename);
 

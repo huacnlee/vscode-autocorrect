@@ -50,7 +50,7 @@
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
     "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
+    "package": "rm -Rf dist/ && webpack --mode production --devtool hidden-source-map",
     "release": "yarn package && vsce publish",
     "test-compile": "tsc -p ./",
     "test-watch": "tsc -watch -p ./",
@@ -61,7 +61,7 @@
   "dependencies": {
     "@huacnlee/autocorrect": "^2.1.1",
     "global": "^4.4.0",
-    "ignore": "^5.1.8",
+    "ignore": "^5.2.0",
     "path-browserify": "^1.0.1",
     "vsce": "^1.96.1",
     "vscode-uri": "^3.0.6",
