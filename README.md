@@ -44,10 +44,17 @@ Open VS Code `settings.json`:
 支持 `.autocorrectrc` 配置文件
 
 ```yml
+rules:
+  # 0 - off, 1 - err, 2 - warning
+  spellcheck: 1
+# 配置忽略某些特殊的文本
+textRules:
+  # 让 "hello世界" 这个遇到的时候仅仅给警告
+  hello世界: 2
+  # 忽略 "hi你好"
+  hi你好: 0
 # 配置拼写检查
 spellcheck:
-  # 0 - 仅用, 1 - 开启, 2 - 仅做检查提示
-  mode: 1
   # 名字纠正（主要不要用常见的英文单词）
   words:
     - GitHub
