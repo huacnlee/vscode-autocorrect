@@ -1,3 +1,22 @@
+## 2.2.0
+
+Add `textRules` options for config some special words or texts to ignore.
+
+**For example we wants:**
+
+- `Hello世界` - To just give warning.
+- `Hi你好` - To ignore.
+
+Use can config in `.autocorrectrc`:
+
+```yml
+textRules:
+  Hello世界: 2
+  Hi你好: 0
+```
+
+After that, the AutoCorrect will follow your `textRules` to process.
+
 ## 2.1.1
 
 - Fix `path should be a`path.relative()`d string, but got ".."` error on Windows.
