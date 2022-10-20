@@ -23,6 +23,20 @@
   "main": "./dist/extension-node",
   "browser": "./dist/extension-web",
   "contributes": {
+    "languages": [
+      {
+        "id": "yaml",
+        "filenames": [
+          ".autocorrectrc"
+        ]
+      },
+      {
+        "id": "ignore",
+        "filenames": [
+          ".autocorrectignore"
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "autocorrect.format",
