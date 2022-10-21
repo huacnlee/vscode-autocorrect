@@ -1,3 +1,10 @@
+## 2.3.0
+
+- Add to support correct full-width punctuations into half-width in english contents.
+- Define languages to let VS Code kwnow `.autocorrectrc`, `.autocorrectignore` file type.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.3.0
+
 ## 2.2.0
 
 Add `textRules` options for config some special words or texts to ignore.
