@@ -4,7 +4,7 @@
   "publisher": "huacnlee",
   "homepage": "https://github.com/huacnlee/autocorrect",
   "description": "AutoCorrect is a linter and formatter to help you to improve copywriting, correct spaces, words, punctuations between CJK (Chinese, Japanese, Korean).",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "license": "MIT",
   "engines": {
     "vscode": "^1.57.0"
@@ -64,6 +64,7 @@
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
     "watch": "webpack --watch",
+    "web": "yarn compile && serve ./",
     "package": "rm -Rf dist/ && webpack --mode production --devtool hidden-source-map",
     "release": "yarn package && vsce publish",
     "test-compile": "tsc -p ./",

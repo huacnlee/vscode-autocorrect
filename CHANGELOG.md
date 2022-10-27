@@ -1,3 +1,10 @@
+## 2.4.0
+
+- Upgrade AutoCorrect v2.4.0 to support `.xml`, `.kt`, `.proto`, `.proto` and improve Markdown parser.
+- Fix VS Code Extension to load `.autocorrectrc` config.
+
+https://github.com/huacnlee/autocorrect/releases/edit/v2.4.0
+
 ## 2.3.0
 
 - Add to support correct full-width punctuations into half-width in english contents.
