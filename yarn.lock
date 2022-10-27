@@ -330,9 +330,9 @@
     strip-json-comments "^3.1.1"
 
 "@huacnlee/autocorrect@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@huacnlee/autocorrect/-/autocorrect-2.3.1.tgz#e9fc753a8a1fba5bdfeb195454eacbe1fdf76f9e"
-  integrity sha512-OT5YFgmhlQuXiwmIiSnyOL7M+JCejaOn5dmqf8D88/vsDVm6qE/I1fk43f8cvYlitM7I+ZXYnkL1EYdzgLBAjw==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@huacnlee/autocorrect/-/autocorrect-2.4.1.tgz#ff9c1b3cb82621bef260dbcdc7185eaacdc75791"
+  integrity sha512-qZOnA88zN8tovlxsNSb8Qun6uRcY/OY+9M3vvM+fJQp3szPzr/ix48RfYZVfit/0nxlVtGSvBI93toXswuolyA==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"

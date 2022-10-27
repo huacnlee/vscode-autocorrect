@@ -41,9 +41,12 @@ async function reloadConfig(document?: vscode.TextDocument) {
   }
 
   try {
-    const configStr = await vscode.workspace.fs.readFile(filename);
-    (await getAutoCorrect()).loadConfig(configStr.toString());
-  } catch (e) {}
+    const doc = await vscode.workspace.openTextDocument(filename);
+    const configStr = doc.getText();
+    (await getAutoCorrect()).loadConfig(configStr);
+  } catch (e) {
+    console.error('Read config file error: ', e, ' file:', filename);
+  }
 }
 
 export async function isIgnore(
