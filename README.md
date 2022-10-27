@@ -28,7 +28,7 @@
 
 Open VS Code `settings.json`:
 
-```json
+```json2
 {
   // 开启/关闭 AutoCorrect
   "autocorrect.enable": true,
