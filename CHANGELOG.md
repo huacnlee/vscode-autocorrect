@@ -1,4 +1,4 @@
-## 2.4.1
+## 2.4.2
 
 - Add `enableLint` config for enable/disable linting.
 
