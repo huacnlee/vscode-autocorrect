@@ -1,3 +1,7 @@
+## 2.4.1
+
+- Add `enableLint` config for enable/disable linting.
+
 ## 2.4.0
 
 - Upgrade AutoCorrect v2.4.0 to support `.xml`, `.kt`, `.proto`, `.proto` and improve Markdown parser.
