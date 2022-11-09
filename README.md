@@ -30,10 +30,12 @@ Open VS Code `settings.json`:
 
 ```json2
 {
-  // 开启/关闭 AutoCorrect
+  // 完全开启/关闭 AutoCorrect，默认: true
   "autocorrect.enable": true,
+  // 开启/关闭 AutoCorrect Lint 检查，默认: true
+  "autocorrect.enableLint": true,
   // 是否启用 formatOnSave，默认: true
-  "autocorrect.formatOnSave": true
+  "autocorrect.formatOnSave": true,
 }
 ```
 
