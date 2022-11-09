@@ -70,6 +70,10 @@ export function activate(ctx: vscode.ExtensionContext) {
         return;
       }
 
+      if (!config['enableLint']) {
+        return;
+      }
+
       if (lastLintTimer) {
         clearTimeout(lastLintTimer);
       }

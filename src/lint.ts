@@ -55,7 +55,6 @@ function diagnosticResults(
   document: vscode.TextDocument,
   results: Array<ICheckResult>
 ) {
-  const fileName = document.fileName;
   const fileUri = document.uri;
   const diagnostics: Array<vscode.Diagnostic> = [];
 

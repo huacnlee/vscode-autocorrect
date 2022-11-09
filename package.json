@@ -50,12 +50,17 @@
         "autocorrect.enable": {
           "type": "boolean",
           "default": true,
-          "description": "Turn on/off AutoCorrect"
+          "description": "Turn on/off AutoCorrect."
         },
         "autocorrect.formatOnSave": {
           "type": "boolean",
           "default": true,
-          "description": "Turn on/off autoformatting file on save"
+          "description": "Turn on/off autoformatting file on save."
+        },
+        "autocorrect.enableLint": {
+          "type": "boolean",
+          "default": true,
+          "description": "Turn on/off AutoCorrect Lint."
         }
       }
     }
