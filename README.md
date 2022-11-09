@@ -1,32 +1,32 @@
-# AutoCorrect for VS Code
+# AutoCorrect for Visual Studio Code
 
 [AutoCorrect](https://github.com/huacnlee/autocorrect) 用于「自动纠正」或「检查并建议」文案，给 CJK（中文、日语、韩语）与英文混写的场景，补充正确的空格，同时尝试以安全的方式自动纠正标点符号等等。
 
 类似 ESlint、Rubocop、Gofmt 等工具，[AutoCorrect](https://github.com/huacnlee/autocorrect) 结合 VS Code，它提供 Lint 功能能便捷的检测出项目中有问题的文案，起到统一规范的作用。
 
-支持各种类型源代码文件支持，能自动识别文件名，并准确找到字符串、注释做自动纠正。
-
-> 此方案最早于 [2013 年](https://github.com/huacnlee/auto-correct/commit/688b7f492623baead3477b4cf0baa706777864d6) 出现于 Ruby China 的项目，并逐步完善规则细节，当前准确率较高（级少数异常情况），你可以放心用来辅助你完整自动纠正动作。
+支持各种类型文件支持，能自动识别文件名，并准确找到字符串、注释做自动纠正。
 
 ## Show case
 
-### Lint
+### Linter
 
 [AutoCorrect](https://github.com/huacnlee/autocorrect) 可以在打开文件或保存文件后，对当前文件做 Lint 检查，并用颜色标注出有问题的部分。
 
 <img width="900" alt="huacnlee.autocorrect" src="https://user-images.githubusercontent.com/5518/191890126-4e0c99dc-91ce-4262-a774-3813a636eea1.png">
 
-## 使用演示
+### Quickfix
 
 <img width="900" src="https://user-images.githubusercontent.com/5518/191890586-f184b798-9432-48e8-a7ff-92b5c9f8f230.gif" />
 
-### Use FormatOnSave
+## 保存格式化
 
 当开启 FormatOnSave 的时候，保存文件会自动纠正有问题的部分。
 
-## Configuration
+> NOTE: 某些时候你不想触发保存格式化，可以用 `Save Without Formatting` 命令来保存。
 
-Open VS Code `settings.json`:
+## 配置
+
+可以通过修改 `settings.json` 来配置，或者进入设置界面：
 
 ```json2
 {
