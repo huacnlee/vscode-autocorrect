@@ -100,6 +100,24 @@ export function activate(ctx: vscode.ExtensionContext) {
       }
     })
   );
+
+  // Listen config updated
+  vscode.workspace.onDidChangeConfiguration(
+    (e: vscode.ConfigurationChangeEvent) => {
+      if (!e.affectsConfiguration('autocorrect')) {
+        return;
+      }
+
+      const config = vscode.workspace.getConfiguration('autocorrect');
+      if (!config['enable']) {
+        lintDiagnosticCollection.clear();
+      }
+
+      if (!config['enableLint']) {
+        lintDiagnosticCollection.clear();
+      }
+    }
+  );
 }
 
 // this method is called when your extension is deactivated
