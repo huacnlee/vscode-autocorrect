@@ -1,3 +1,7 @@
+## 2.4.3
+
+- Watch configuration to clear lint diagnostics when `autocorrect.enableLint` or `autocorrect.enable` config has disabled.
+
 ## 2.4.2
 
 - Add `enableLint` config for enable/disable linting.
