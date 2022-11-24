@@ -1,4 +1,4 @@
-## 2.5.0
+## 2.5.1
 
 - VS Code plugin renamed to: `huacnlee.autocorrect`.
 - Add `fileTypes` config key for support customize file types mapping.
@@ -7,8 +7,9 @@
 - Add `.mdx` as Markdown.
 - Add `Rakefile`, `.gemspec`, `Profile` as Ruby.
 - Fix halfwidth covert for escape quote when wrap has same quote.
+- Fix AsciiDoc issue that will lose the end char in mark.
 
-https://github.com/huacnlee/autocorrect/releases/tag/v2.5.0
+https://github.com/huacnlee/autocorrect/releases/tag/v2.5.1
 
 ## 2.4.3
 
