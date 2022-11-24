@@ -1,3 +1,15 @@
+## 2.5.0
+
+- VS Code plugin renamed to: `huacnlee.autocorrect`.
+- Add `fileTypes` config key for support customize file types mapping.
+- Add rule: `no-space-fullwidth-quote` for allows config keep or remove space around fullwidth quotes `“”`,
+- Add `.asc` as AsciiDoc.
+- Add `.mdx` as Markdown.
+- Add `Rakefile`, `.gemspec`, `Profile` as Ruby.
+- Fix halfwidth covert for escape quote when wrap has same quote.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.5.0
+
 ## 2.4.3
 
 - Watch configuration to clear lint diagnostics when `autocorrect.enableLint` or `autocorrect.enable` config has disabled.

@@ -43,7 +43,7 @@
 
 参见：https://github.com/huacnlee/autocorrect#configuration
 
-支持 `.autocorrectrc` 配置文件
+支持 `.autocorrectrc` 配置文件，详见默认配置：[.autocorrect.default](https://github.com/huacnlee/autocorrect/blob/main/autocorrect/.autocorrectrc.default)
 
 ```yml
 rules:
@@ -55,6 +55,12 @@ textRules:
   hello世界: 2
   # 忽略 "hi你好"
   hi你好: 0
+# 配置文件类型关联
+fileTypes:
+  # "rb": ruby
+  # "Rakefile": ruby
+  # "*.js": javascript
+  # ".mdx": markdown
 # 配置拼写检查
 spellcheck:
   # 名字纠正（主要不要用常见的英文单词）
