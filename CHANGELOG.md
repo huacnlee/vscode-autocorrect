@@ -1,3 +1,9 @@
+## 2.5.2
+
+- Improve AsciiDoc parser details for fix a lot of issues.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.5.2
+
 ## 2.5.1
 
 - VS Code plugin renamed to: `huacnlee.autocorrect`.
