@@ -1,3 +1,11 @@
+## 2.5.8
+
+- Add to support Svelte (.svelte)
+- Improve Markdown grammar for use COMMENT built-in rule name.
+- Improve grammars for complex white spaces and comments.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.5.8
+
 ## 2.5.2
 
 - Improve AsciiDoc parser details for fix a lot of issues.
