@@ -1,3 +1,9 @@
+## 2.6.0
+
+- Add for Jupyter Notebook supports `.jupyter`, `.ipynb`.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.6.0
+
 ## 2.5.8
 
 - Add to support Svelte (.svelte)
