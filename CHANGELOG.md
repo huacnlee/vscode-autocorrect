@@ -1,3 +1,12 @@
+## 2.6.1
+
+- Fix halfwidth converter for not change `‘...’`, `“...”` in english contents.
+
+  The single `‘...’` and double `“...”` char is used in english typographic.
+  ref: https://en.wikipedia.org/wiki/Quotation_marks_in_English
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.6.1
+
 ## 2.6.0
 
 - Add for Jupyter Notebook supports `.jupyter`, `.ipynb`.
