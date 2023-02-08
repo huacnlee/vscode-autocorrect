@@ -1,3 +1,15 @@
+## 2.6.2
+
+Incoming a lot of fix for markdown:
+
+- Fix markdown to support parse `[foo]` as link text.
+- Improve Markdown parser for soft wrap for avoid some mistakes.
+- Fix markdown for support newline in link and mark `[text\nfoo]()`, `**Foo\nBar**`.
+- Fix HTML parse in markdown.
+- Fix markdown for support mark in link text.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.6.2
+
 ## 2.6.1
 
 - Fix halfwidth converter for not change `‘...’`, `“...”` in english contents.
