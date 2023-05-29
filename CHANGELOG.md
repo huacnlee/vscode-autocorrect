@@ -1,3 +1,7 @@
+## 2.6.3
+
+- Fix #6, remove lint diagnostics when document close.
+
 ## 2.6.2
 
 Incoming a lot of fix for markdown:
