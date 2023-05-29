@@ -118,6 +118,10 @@ export function activate(ctx: vscode.ExtensionContext) {
       }
     }
   );
+
+  vscode.workspace.onDidCloseTextDocument((document) => {
+    lintDiagnosticCollection.delete(document.uri);
+  });
 }
 
 // this method is called when your extension is deactivated
