@@ -79,7 +79,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "dependencies": {
-    "@huacnlee/autocorrect": "^2.6.2",
+    "@huacnlee/autocorrect": "^2.8.5",
     "global": "^4.4.0",
     "ignore": "^5.2.0",
     "path-browserify": "^1.0.1",
