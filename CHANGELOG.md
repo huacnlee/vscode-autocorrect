@@ -1,3 +1,9 @@
+## 2.6.4
+
+- Upgrade AutoCorrect 2.8.5 for fix issues.
+
+https://github.com/huacnlee/autocorrect/releases/tag/v2.8.5
+
 ## 2.6.3
 
 - Fix #6, remove lint diagnostics when document close.
